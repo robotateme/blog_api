@@ -2,9 +2,9 @@
 
 namespace App\Services\Content\Scenarios;
 
-use App\Services\Content\Send;
+use App\Services\Content\Contracts\SendCommentScenarioInterface;
 
-class SendCommentScenario implements Send
+class SendCommentScenario implements SendCommentScenarioInterface
 {
 
 }
