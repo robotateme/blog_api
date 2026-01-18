@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Content\Actions\GetContentAction;
+use App\Services\Content\Contracts\GetContentActionInterface;
+use App\Services\Content\Scenarios\GetContentScenario;
 use Illuminate\Support\ServiceProvider;
 
 class ActionsServiceProvider extends ServiceProvider
@@ -11,7 +14,6 @@ class ActionsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**

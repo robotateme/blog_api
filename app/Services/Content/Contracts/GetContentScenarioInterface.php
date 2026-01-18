@@ -6,5 +6,7 @@ use App\Services\Contracts\ScenarioInterface;
 
 interface GetContentScenarioInterface extends ScenarioInterface
 {
+    public function __construct(GetContentActionInterface $getContentAction);
 
+    public function execute() : iterable;
 }

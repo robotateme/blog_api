@@ -2,9 +2,22 @@
 
 namespace App\Services\Content;
 
-use App\Services\Contracts\ScenarioInterface;
+use App\Services\Content\Contracts\ContentServiceInterface;
+use App\Services\Content\Contracts\GetContentScenarioInterface;
+use App\Services\Content\Scenarios\GetContentScenario;
 
-class ContentService implements ScenarioInterface
+readonly class ContentService implements ContentServiceInterface
 {
 
+    /**
+     * @param GetContentScenario $scenario
+     */
+    public function __construct(private GetContentScenarioInterface $scenario)
+    {
+    }
+
+    public function getContent(): iterable
+    {
+        return $this->scenario->execute();
+    }
 }

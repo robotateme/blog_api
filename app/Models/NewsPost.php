@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use Database\Factories\NewsPostFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class NewsPost extends Content
+class NewsPost extends Post
 {
-    /** @use HasFactory<NewsPostFactory> */
-    use HasFactory;
 }

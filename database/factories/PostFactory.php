@@ -3,15 +3,13 @@
 namespace Database\Factories;
 
 use App\Enums\ContentTypesEnum;
-use App\Models\Comment;
-use App\Models\NewsPost;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Comment>
+ * @extends Factory<Post>
  */
-class CommentFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,9 +19,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 10),
-            'commentable_id' => Post::query()->inRandomOrder()->first()?->id,
-            'content' => $this->faker->text(),
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'type' => $this->faker->randomElement(ContentTypesEnum::values())
         ];
     }
 }

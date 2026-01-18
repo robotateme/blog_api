@@ -2,9 +2,23 @@
 
 namespace App\Services\Content\Actions;
 
-use App\Services\Contracts\ActionInterface;
+use App\Repositories\Content\Contracts\ContentRepositoryInterface;
+use App\Services\Content\Contracts\GetContentActionInterface;
 
-class GetContentAction implements ActionInterface
+
+readonly class GetContentAction implements GetContentActionInterface
 {
 
+    public function __construct(private ContentRepositoryInterface $repository)
+    {
+
+    }
+
+    /**
+     * @return iterable
+     */
+    public function handle(): iterable
+    {
+        return $this->repository->all();
+    }
 }

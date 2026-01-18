@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
-use Database\Factories\VideoPostFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class VideoPost extends Content
+class VideoPost extends Model
 {
-    /** @use HasFactory<VideoPostFactory> */
-    use HasFactory;
+    /**
+     * @return MorphMany
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(
+            Comment::class,
+            'commentable'
+        );
+    }
 }
