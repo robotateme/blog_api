@@ -2,8 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\ContentTypesEnum;
 use App\Models\Post;
+use App\Repositories\Content\ContentRepository;
+use App\Shared\Criteria\Criteria;
+use App\Shared\Criteria\Enums\FilterOperatorsEnum;
+use App\Shared\Criteria\Enums\OrderDirectionsEnum;
+use App\Shared\Criteria\Filter;
+use App\Shared\Criteria\Order;
 use Illuminate\Console\Command;
 
 class TestCommand extends Command
@@ -25,9 +30,19 @@ class TestCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(ContentRepository $repository): void
     {
-       $posts = Post::query();
-       dd($posts);
+        $criteria = new Criteria(
+            [
+                new Filter('id', FilterOperatorsEnum::GT, 1),
+                new Filter('id', FilterOperatorsEnum::LT, 100),
+            ],
+            [new Order('id', OrderDirectionsEnum::DESC)]
+        );
+
+        $result = $repository->findByCriteria($criteria);
+        foreach ($result as $item) {
+            dump($item);
+        };
     }
 }
